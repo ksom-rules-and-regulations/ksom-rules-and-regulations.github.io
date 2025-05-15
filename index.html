@@ -309,6 +309,10 @@
              main {
                 margin-top: 5rem; /* Adjust margin for fixed mobile header */
              }
+             /* Left-align part titles on mobile */
+             .part-title {
+                 text-align: left;
+             }
         }
 
          /* Style for subsections within content (no extra numbering) */
@@ -503,7 +507,7 @@
     </nav>
 
     <nav class="mobile-top-nav md:hidden" role="navigation" aria-label="Mobile navigation toggle">
-        <div class="hamburger" id="hamburger-icon" role="button" aria-label="Open mobile navigation menu" aria-expanded="false">
+        <div class="hamburger" id="hamburger-icon" role="button" aria-label="Open mobile navigation menu" aria-expanded="false" tabindex="0">
             <i class="fas fa-bars"></i>
         </div>
         </nav>
@@ -511,29 +515,29 @@
     <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
 
     <nav class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation menu">
-        <div class="close-btn" id="close-nav" role="button" aria-label="Close mobile navigation menu">&times;</div>
+        <div class="close-btn" id="close-nav" role="button" aria-label="Close mobile navigation menu" tabindex="0">&times;</div>
         <ul>
-            <li class="dropdown-toggle" role="button" aria-expanded="false">
+            <li class="dropdown-toggle" role="button" aria-expanded="false" aria-controls="part-1-menu" tabindex="0">
                 <a href="#part-1">Preliminary</a>
-                <ul>
+                <ul id="part-1-menu">
                     <li><a href="#section-1">1. Introduction</a></li>
                     <li><a href="#section-2">2. Name and Address of the Institution</a></li>
                     <li><a href="#section-3">3. Definitions</a></li>
                     <li><a href="#section-4">4. Aims and Objectives of KSoM</a></li>
                 </ul>
             </li>
-             <li class="dropdown-toggle" role="button" aria-expanded="false">
+             <li class="dropdown-toggle" role="button" aria-expanded="false" aria-controls="part-2-menu" tabindex="0">
                 <a href="#part-2">Constitution</a>
-                <ul>
+                <ul id="part-2-menu">
                     <li><a href="#section-5">5. Governing Body of KSoM</a></li>
                     <li><a href="#section-6">6. Executive Council of KSoM</a></li>
                     <li><a href="#section-7">7. Powers and Functions of the Executive Council</a></li>
                     <li><a href="#section-8">8. Research Council of KSoM</a></li>
                 </ul>
             </li>
-            <li class="dropdown-toggle" role="button" aria-expanded="false">
+            <li class="dropdown-toggle" role="button" aria-expanded="false" aria-controls="part-3-menu" tabindex="0">
                 <a href="#part-3">Powers & Officials</a>
-                <ul>
+                <ul id="part-3-menu">
                     <li><a href="#section-9">9. Service Extension</a></li>
                     <li><a href="#section-10">10. Appointing Authorities</a></li>
                      <li><a href="#section-10-3">10.3. Approval of Promotions</a></li>
@@ -543,9 +547,9 @@
                     <li><a href="#section-14">14. Registrar</a></li>
                 </ul>
             </li>
-            <li class="dropdown-toggle" role="button" aria-expanded="false">
+            <li class="dropdown-toggle" role="button" aria-expanded="false" aria-controls="part-4-menu" tabindex="0">
                 <a href="#part-4">Staff & Appointments</a>
-                <ul>
+                <ul id="part-4-menu">
                     <li><a href="#section-15">15. Classification</a></li>
                     <li><a href="#section-16">16. Appointments & Promotions</a></li>
                     <li><a href="#section-17">17. Appointment of the Director</a></li>
@@ -553,25 +557,25 @@
                     <li><a href="#section-19">19. Appointment of Registrar</a></li>
                 </ul>
             </li>
-            <li class="dropdown-toggle" role="button" aria-expanded="false">
+            <li class="dropdown-toggle" role="button" aria-expanded="false" aria-controls="part-5-menu" tabindex="0">
                 <a href="#part-5">Finance & Accounts</a>
-                <ul>
+                <ul id="part-5-menu">
                     <li><a href="#section-20">20. Budget & Funds of the Institute</a></li>
                     <li><a href="#section-21">21. Audit</a></li>
                     <li><a href="#section-22">22. Exercise of Financial Powers</a></li>
                     </ul>
             </li>
-            <li class="dropdown-toggle" role="button" aria-expanded="false">
+            <li class="dropdown-toggle" role="button" aria-expanded="false" aria-controls="part-6-menu" tabindex="0">
                 <a href="#part-6">Committees</a>
-                <ul>
+                <ul id="part-6-menu">
                     <li><a href="#section-23">23. Finance Committee</a></li>
                     <li><a href="#section-24">24. Building and Works Committee (BWC)</a></li>
                     <li><a href="#section-25">25. Academic Selection Committee</a></li>
                 </ul>
             </li>
-             <li class="dropdown-toggle" role="button" aria-expanded="false">
+             <li class="dropdown-toggle" role="button" aria-expanded="false" aria-controls="part-7-menu" tabindex="0">
                 <a href="#part-7">Service Conditions</a>
-                <ul>
+                <ul id="part-7-menu">
                     <li><a href="#section-26">26. Disciplinary Rules</a></li>
                     <li><a href="#section-27">27. Leave Rules</a></li>
                     <li><a href="#section-28">28. Recruitment and Promotion of Staff</a></li>
@@ -579,9 +583,9 @@
                     <li><a href="#section-30">30. Contractual Services</a></li>
                 </ul>
             </li>
-             <li class="dropdown-toggle" role="button" aria-expanded="false">
+             <li class="dropdown-toggle" role="button" aria-expanded="false" aria-controls="part-8-menu" tabindex="0">
                 <a href="#part-8">Miscellaneous</a>
-                <ul>
+                <ul id="part-8-menu">
                     <li><a href="#section-31">31. Execution of Contracts on Behalf of the Institute</a></li>
                     <li><a href="#section-32">32. Perpetual Succession</a></li>
                     <li><a href="#section-33">33. Amendments of the Rules and Regulations</a></li>
@@ -679,8 +683,6 @@
                      <li>To undertake any other measures deemed necessary and beneficial for the advancement of learning in Mathematical Sciences and for the diffusion of knowledge in these sciences.</li>
                 </ol>
             </article>
-
-
         </section>
 
         <section id="part-2">
@@ -969,7 +971,6 @@
                     </ol>
                 </div>
             </article>
-
         </section>
 
         <section id="part-3">
@@ -1158,8 +1159,6 @@
                     <p class="ml-4 text-base md:text-lg">The Registrar shall be responsible for overseeing the maintenance and upkeep of the Institute's premises. </p>
                 </div>
             </article>
-
-
         </section>
 
         <section id="part-4">
@@ -1252,7 +1251,6 @@
                     <p class="ml-4 text-base md:text-lg">The appointment to the positions of Registrar shall be made by the Executive Council. Such appointments shall be effected upon the formal recommendation of the Director, irrespective of the Pay Matrix Level assigned to the said positions.</p>
                 </div>
             </article>
-
         </section>
 
         <section id="part-5">
@@ -1330,7 +1328,6 @@
                     <p class="ml-4 text-base md:text-lg">The Executive Council shall be empowered to delegate its financial powers to the various authorities within the Institute to such extent as deemed necessary and appropriate for the efficient functioning of the Institute.</p>
                 </div>
             </article>
-
         </section>
 
         <section id="part-6">
@@ -1392,7 +1389,6 @@
                     <p class="ml-4 text-base md:text-lg">The Academic Selection Committee, responsible for matters pertaining to the recruitment and promotion of academic staff, shall be constituted and shall function in strict conformity with the recruitment and promotion rules of the Institute, as duly approved by the Executive Council from time to time.</p>
                 </div>
             </article>
-
         </section>
 
         <section id="part-7">
@@ -1469,7 +1465,6 @@
                     <p class="ml-4 text-base md:text-lg">Any individual engaged by an external agency or contractor for the provision of services to the Institute pursuant to a contract executed under the provisions of clause 30.1 shall not, under any circumstances whatsoever, be construed as or deemed to be an employee of the Institute.</p>
                 </div>
             </article>
-
         </section>
 
         <section id="part-8">
@@ -1602,13 +1597,11 @@
                      <p class="ml-4 text-base md:text-lg">Notwithstanding anything contained in these Rules and Regulations, any directives issued by the Government shall be binding upon the Institute and shall have an overriding effect on any provision of these Rules and Regulations, the statutes governing the Institute, or any other rules of the Institute.</p>
                 </div>
             </article>
-
-
         </section>
 
     </main>
 
-    <footer class="text-center mt-8 p-4 text-gray-600">
+    <footer class="text-center mt-8 p-4 text-gray-600" role="contentinfo">
         <p>&copy; 2025 Kerala School of Mathematics. All rights reserved.</p>
     </footer>
 
@@ -1624,6 +1617,13 @@
             mobileNav.classList.toggle('open');
             mobileNavOverlay.style.display = mobileNav.classList.contains('open') ? 'block' : 'none';
             hamburgerIcon.setAttribute('aria-expanded', !isExpanded);
+            // Set focus to the close button when the nav opens
+            if (!isExpanded) {
+                closeNavButton.focus();
+            } else {
+                // Set focus back to the hamburger button when the nav closes
+                hamburgerIcon.focus();
+            }
         }
 
         hamburgerIcon.addEventListener('click', toggleMobileNav);
@@ -1647,6 +1647,7 @@
                 event.stopPropagation(); // Stop event from bubbling up to close nav
 
                 const wasOpen = this.classList.contains('open');
+                const nestedUl = this.querySelector('ul'); // Find the nested ul
 
                 // Close all other open dropdowns in the mobile nav
                 mobileNav.querySelectorAll('li.dropdown-toggle.open').forEach(openItem => {
@@ -1654,9 +1655,9 @@
                         openItem.classList.remove('open');
                         openItem.setAttribute('aria-expanded', 'false');
                          // Hide the nested ul directly
-                        const nestedUl = openItem.querySelector('ul');
-                        if (nestedUl) {
-                            nestedUl.style.display = 'none';
+                        const otherNestedUl = openItem.querySelector('ul');
+                        if (otherNestedUl) {
+                            otherNestedUl.style.display = 'none';
                         }
                     }
                 });
@@ -1666,7 +1667,6 @@
                 this.setAttribute('aria-expanded', !wasOpen);
 
                 // Toggle display of the nested ul
-                const nestedUl = this.querySelector('ul');
                 if (nestedUl) {
                     nestedUl.style.display = this.classList.contains('open') ? 'block' : 'none';
                 }
@@ -1736,6 +1736,25 @@
         window.addEventListener('load', () => {
              window.dispatchEvent(new Event('scroll'));
         });
+
+        // Add keyboard navigation for dropdown toggles
+        mobileNav.querySelectorAll('li.dropdown-toggle').forEach(item => {
+            item.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    this.click(); // Simulate a click to trigger the toggle logic
+                }
+            });
+        });
+
+         // Add keyboard navigation for close button
+        closeNavButton.addEventListener('keydown', function(event) {
+             if (event.key === 'Enter' || event.key === ' ') {
+                 event.preventDefault();
+                 this.click(); // Simulate a click to trigger the close logic
+             }
+         });
+
 
     </script>
 
