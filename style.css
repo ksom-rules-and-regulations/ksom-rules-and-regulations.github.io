@@ -1,0 +1,397 @@
+/* Using CSS variables for a refined color palette */
+:root {
+    --primary-dark: #333333; /* Dark Charcoal for main text and elements */
+    --accent-gold: #b8860b; /* Muted Gold for accents and headings */
+    --light-grey-bg: #f4f4f4; /* Light Grey background */
+    --white-bg: #ffffff; /* White background for content boxes */
+    --border-light: #dddddd; /* Light grey border */
+    --nav-bg: #444444; /* Dark Grey for navigation */
+    --nav-link-light: #eeeeee; /* Very Light Grey for nav links */
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--light-grey-bg);
+    color: var(--primary-dark);
+    line-height: 1.7; /* Increased line spacing for readability */
+    /* Removed padding-top from body, will add margin to main content */
+    padding-left: 0; /* Remove left padding as nav is now horizontal */
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--accent-gold); /* Accent gold for headings */
+    line-height: 1.3;
+}
+
+/* Fixed Header Styling */
+header {
+    text-align: center;
+    padding: 1.5rem 0; /* Increased padding inside the header */
+    background-color: var(--white-bg);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* Softer, wider shadow */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 30;
+}
+
+header h1 {
+    border-bottom: 2px solid var(--primary-dark); /* Dark charcoal underline */
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    font-size: 2.5rem; /* Slightly larger main title */
+    color: var(--primary-dark); /* Main title in dark charcoal */
+}
+
+ header p {
+    color: var(--accent-gold); /* Subtitle in accent gold */
+    margin-top: 0;
+    font-size: 1.1rem;
+ }
+
+/* Navigation Bar Styling (Below Header) */
+.desktop-nav {
+    background-color: var(--nav-bg); /* Dark grey navigation background */
+    padding: 0.75rem 0; /* Padding inside the nav */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 8.5rem; /* Position below the header (adjust based on header height) */
+    left: 0;
+    z-index: 20;
+}
+
+.desktop-nav-container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.desktop-nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.desktop-nav > ul > li {
+    position: relative;
+    margin: 0 1rem; /* Slightly less space between main links */
+}
+.desktop-nav a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--nav-link-light); /* Light grey nav links */
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    border-radius: 0.25rem;
+    font-weight: 400; /* Normal font weight for nav */
+}
+.desktop-nav a:hover {
+    background-color: var(--accent-gold);
+    color: var(--white-bg);
+}
+
+/* Dropdown Menu Styles (nested) */
+.desktop-nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--white-bg);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    z-index: 10;
+    flex-direction: column;
+    min-width: 220px; /* Slightly wider dropdown */
+    border-radius: 0.25rem;
+    padding: 0.5rem 0;
+    border: 1px solid var(--border-light);
+}
+ .desktop-nav ul ul li {
+    margin: 0;
+    border-bottom: 1px solid var(--border-light); /* Add border back for dropdown items */
+ }
+
+ .desktop-nav ul ul li:last-child {
+    border-bottom: none;
+ }
+
+.desktop-nav ul ul a {
+    color: var(--primary-dark);
+    padding: 0.5rem 1rem;
+    font-weight: 400;
+}
+ .desktop-nav ul ul a:hover {
+    background-color: var(--light-grey-bg);
+    color: var(--primary-dark);
+ }
+
+/* Show dropdown on hover */
+.desktop-nav > ul > li:hover > ul {
+    display: block;
+}
+
+/* Content Titles Styling */
+.section-title {
+    border-bottom: 1px solid var(--border-light); /* Lighter border for sections */
+    padding-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-dark); /* Section titles in dark charcoal */
+    font-size: 1.75rem; /* Adjusted section title size */
+}
+ .subsection-title {
+    font-weight: 600; /* Semi-bold */
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-dark); /* Subsection titles in dark charcoal */
+    font-size: 1.25rem; /* Adjusted subsection title size */
+}
+.part-title {
+    border-bottom: 2px solid var(--accent-gold); /* Accent gold underline for part titles */
+    padding-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--accent-gold); /* Part titles in accent gold */
+    text-align: center;
+    font-size: 2rem; /* Adjusted part title size */
+}
+
+/* Styling for Part Sections (Boxes) */
+main section[id^="part-"] {
+    background-color: var(--white-bg); /* White background for boxes */
+    border: 1px solid var(--border-light);
+    border-radius: 0.75rem; /* More rounded corners */
+    padding: 2rem; /* Increased inner padding */
+    margin-bottom: 2.5rem; /* More space between part boxes */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Slightly stronger shadow */
+}
+
+
+/* --- Mobile Navigation Styles (Hamburger) --- */
+.mobile-top-nav {
+    background-color: var(--primary-dark); /* Dark charcoal background for top nav */
+    padding: 0.75rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Hamburger Icon */
+.hamburger {
+    font-size: 1.5rem;
+    color: var(--white-bg);
+    cursor: pointer;
+}
+
+/* Mobile Navigation Overlay */
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 30;
+}
+
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background-color: var(--white-bg); /* White background for mobile nav */
+    z-index: 40;
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+    padding-top: 4rem;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+}
+
+.mobile-nav.open {
+    left: 0;
+}
+
+.mobile-nav .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--primary-dark);
+    cursor: pointer;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav ul li {
+     margin: 0;
+     border-bottom: 1px solid var(--border-light);
+}
+
+ .mobile-nav ul li:last-child {
+    border-bottom: none;
+ }
+
+.mobile-nav a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--primary-dark);
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.mobile-nav a:hover {
+    background-color: var(--light-grey-bg);
+}
+
+/* Style for ordered lists within content */
+main ol {
+    list-style-type: decimal;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+ main ol li {
+    margin-bottom: 0.5rem;
+ }
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .mobile-top-nav, .mobile-nav-overlay, .mobile-nav {
+        display: none !important; /* Hide mobile nav elements on desktop */
+    }
+    .desktop-nav {
+        display: block; /* Show desktop nav on desktop */
+    }
+     body {
+        padding-left: 0; /* Remove left padding on desktop */
+     }
+     /* Adjusted margin-top for main content to clear fixed header and nav */
+     main {
+        margin-top: 11rem; /* Increased margin for fixed header and nav */
+     }
+}
+
+@media (max-width: 767px) {
+    .desktop-nav {
+        display: none; /* Hide desktop nav on mobile */
+    }
+     .mobile-top-nav {
+        display: flex; /* Show mobile top nav on mobile */
+     }
+     body {
+        padding-left: 1rem; /* Keep some padding on mobile */
+     }
+     /* Adjusted margin-top for main content to clear fixed mobile header */
+     main {
+        margin-top: 5rem; /* Adjust margin for fixed mobile header */
+     }
+     /* Left-align part titles on mobile */
+     .part-title {
+         text-align: left;
+     }
+}
+
+ /* Style for subsections within content (no extra numbering) */
+.content-subsection {
+    margin-bottom: 1rem;
+}
+
+ .content-subsection p {
+    margin-left: 1.5rem; /* Indent content below subsection title */
+ }
+
+ /* Specific styling for the numbered list items within definitions */
+ main article ol li {
+     margin-bottom: 0.75rem;
+ }
+
+  /* Style for nested numbered lists (like 6.5.1, 6.5.2) */
+ main article ol ol {
+     margin-left: 1rem;
+     margin-top: 0.5rem;
+ }
+
+ main article ol ol li {
+     margin-bottom: 0.5rem;
+ }
+
+ /* Accessibility: Screen reader only class */
+ .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+ }
+
+ .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+ }
+
+ /* Style for active navigation links */
+ .desktop-nav a.active,
+ .mobile-nav a.active {
+     font-weight: 700; /* Bold active link */
+     color: var(--accent-gold); /* Highlight color */
+     /* Add underline or other visual indicator if desired */
+ }
+
+ /* Style for mobile nav dropdown toggle */
+ .mobile-nav .dropdown-toggle {
+    cursor: pointer;
+    position: relative;
+ }
+
+ .mobile-nav .dropdown-toggle::after {
+     content: '\25BC'; /* Down arrow */
+     font-size: 0.8em;
+     margin-left: 0.5em;
+     transition: transform 0.3s ease;
+ }
+
+ .mobile-nav .dropdown-toggle.open::after {
+     transform: rotate(180deg); /* Rotate arrow up when open */
+ }
+
+ .mobile-nav ul ul {
+     display: none; /* Hide nested menus by default */
+     padding-left: 1.5rem; /* Indent nested menu */
+     border-top: 1px solid var(--border-light);
+     margin-top: 0.5rem;
+ }
+
+ .mobile-nav .dropdown-toggle.open + ul {
+     display: block; /* Show nested menu when parent is open */
+ }
+
+ .mobile-nav ul ul li {
+     border-bottom: none; /* Remove border for nested list items */
+ }
+
+ .mobile-nav ul ul a {
+     padding: 0.5rem 1rem; /* Adjust padding for nested links */
+ }
