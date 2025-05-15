@@ -8,175 +8,195 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Lato', sans-serif; /* Body text font */
-            background-color: #f8f9fa; /* Very light grey background */
-            color: #444; /* Slightly softer dark grey text */
-            line-height: 1.6; /* Improved line spacing for readability */
+        /* Using CSS variables for easier color management */
+        :root {
+            --primary-blue: #1a4e85; /* A slightly richer blue */
+            --secondary-blue: #4a7c59; /* A muted green/blue for accents */
+            --light-grey: #f8f9fa;
+            --dark-grey: #343a40; /* Darker text for better contrast */
+            --medium-grey: #6c757d;
+            --white: #ffffff;
         }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--light-grey);
+            color: var(--dark-grey);
+            line-height: 1.6;
+            /* Adjusted padding-left to ensure content is visible */
+            padding-left: 16rem; /* Space for the fixed left nav */
+            padding-top: 1rem; /* Keep minimal padding at the very top */
+        }
+
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif; /* Headings font */
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-blue); /* Primary blue for headings */
         }
 
         /* Header Titles Styling */
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+        }
+
         header h1 {
-            border-bottom: 3px solid #1a2e4a; /* Thicker deep blue underline for main title */
-            padding-bottom: 0.75rem; /* Padding below the title */
-            margin-bottom: 0.5rem; /* Space between main title and subtitle */
-            color: #1a2e4a; /* Deep muted blue for main title */
-            display: inline-block; /* Make border only as wide as text */
+            border-bottom: 3px solid var(--primary-blue); /* Thicker primary blue underline */
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
         }
 
          header p {
-            color: #4a69bd; /* Medium blue for subtitle */
-            margin-top: 0; /* Remove default top margin */
-            margin-bottom: 2rem; /* Space below the header block */
+            color: var(--secondary-blue); /* Secondary color for subtitle */
+            margin-top: 0;
          }
-
 
         /* Content Titles Styling */
         .section-title {
-            border-bottom: 2px solid #4a69bd; /* Medium blue underline for section titles */
+            border-bottom: 2px solid var(--secondary-blue); /* Secondary color underline for section titles */
             padding-bottom: 0.5rem;
             margin-top: 1.5rem;
             margin-bottom: 1rem;
-            color: #1a2e4a; /* Deep muted blue for titles */
+            color: var(--primary-blue); /* Primary blue for titles */
         }
          .subsection-title {
-            font-weight: 700; /* Bold for subsection titles */
+            font-weight: 700;
             margin-top: 1rem;
             margin-bottom: 0.5rem;
-            color: #1a2e4a; /* Deep muted blue for titles */
+            color: var(--primary-blue); /* Primary blue for titles */
         }
         .part-title {
-            border-bottom: 3px solid #1a2e4a; /* Thicker deep blue underline for part titles */
+            border-bottom: 3px solid var(--primary-blue); /* Thicker primary blue underline for part titles */
             padding-bottom: 1rem;
             margin-top: 2rem;
             margin-bottom: 1.5rem;
-            color: #4a69bd; /* Distinct color for part titles */
+            color: var(--secondary-blue); /* Distinct secondary color for part titles */
+            text-align: center; /* Center align part titles */
         }
 
-        /* --- Desktop Top Navigation Styles --- */
+        /* --- Desktop Left Navigation Styles --- */
         .desktop-nav {
-            background-color: #1a2e4a; /* Deep muted blue background */
-            padding: 0.75rem 0; /* Increased padding */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Stronger shadow */
-            position: fixed; /* Fix navigation to the top */
-            width: 100%;
+            background-color: var(--primary-blue); /* Primary blue background */
+            width: 15rem;
+            position: fixed;
             top: 0;
             left: 0;
-            z-index: 20; /* Ensure nav is above other content */
-        }
-
-        .desktop-nav-container {
-             display: flex;
-             justify-content: center;
-             align-items: center;
+            bottom: 0;
+            overflow-y: auto;
+            padding-top: 1rem;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+            z-index: 20;
         }
 
         .desktop-nav ul {
-            display: flex; /* Arrange main links horizontally */
             list-style: none;
             padding: 0;
             margin: 0;
         }
         .desktop-nav > ul > li {
-            position: relative; /* Needed for positioning the dropdown */
-            margin: 0 1.5rem; /* Increased margin between main links */
+            position: relative;
+            margin: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15); /* Subtle separator */
         }
+         .desktop-nav > ul > li:last-child {
+             border-bottom: none;
+         }
+
         .desktop-nav a {
             display: block;
-            padding: 0.75rem 1rem; /* Increased padding */
-            color: #e9ecef; /* Light grey text for nav links */
+            padding: 0.75rem 1rem;
+            color: var(--light-grey); /* Light text for nav links */
             text-decoration: none;
-            transition: background-color 0.2s ease-in-out;
-            border-radius: 0.375rem; /* rounded corners */
-            font-weight: 600; /* Semi-bold font */
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            font-weight: 600;
         }
         .desktop-nav a:hover {
-            background-color: #4a69bd; /* Medium blue on hover */
-            color: white;
+            background-color: var(--secondary-blue); /* Secondary color on hover */
+            color: var(--white);
         }
 
-        /* Dropdown Menu Styles */
+        /* Dropdown Menu Styles (nested) */
         .desktop-nav ul ul {
             display: none; /* Hide dropdowns by default */
-            position: absolute;
-            top: 100%; /* Position below the parent link */
-            left: 0;
-            background-color: #ffffff; /* White background for dropdown */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Stronger shadow */
-            z-index: 10; /* Ensure dropdown is above content */
-            flex-direction: column; /* Stack dropdown links vertically */
-            min-width: 220px; /* Minimum width for dropdown */
-            border-radius: 0.375rem; /* rounded corners */
-            padding: 0.5rem 0;
-            border: 1px solid #dee2e6; /* Subtle border */
+            position: static;
+            background-color: var(--white); /* White background for dropdown */
+            box-shadow: none;
+            z-index: 10;
+            flex-direction: column;
+            min-width: auto;
+            border-radius: 0;
+            padding: 0;
+            border: none;
         }
          .desktop-nav ul ul li {
-            margin: 0; /* Remove margin from dropdown items */
+            margin: 0;
+            border-bottom: 1px solid #dee2e6; /* Separator */
+         }
+         .desktop-nav ul ul li:last-child {
+             border-bottom: none;
          }
         .desktop-nav ul ul a {
-            color: #444; /* Dark text for dropdown links */
-            padding: 0.75rem 1.25rem; /* Increased padding */
-            font-weight: 400; /* Normal font weight */
+            color: var(--dark-grey); /* Dark text for dropdown links */
+            padding: 0.5rem 1rem 0.5rem 2rem; /* Indent submenu items */
+            font-weight: 400;
         }
          .desktop-nav ul ul a:hover {
-            background-color: #e9ecef; /* Light grey hover for dropdown */
-            color: #1a2e4a; /* Deep blue text on hover */
+            background-color: var(--light-grey); /* Light grey hover for dropdown */
+            color: var(--primary-blue); /* Primary blue text on hover */
          }
 
         /* Show dropdown on hover */
         .desktop-nav > ul > li:hover > ul {
-            display: flex; /* Show dropdown on hover */
+            display: block; /* Show dropdown on hover */
         }
 
 
         /* --- Mobile Navigation Styles (Hamburger) --- */
         .mobile-top-nav {
-            background-color: #1a2e4a; /* Deep muted blue background for top nav */
-            padding: 0.75rem 1rem; /* Increased padding */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Stronger shadow */
-            position: fixed; /* Fix navigation to the top */
+            background-color: var(--primary-blue); /* Primary blue background for top nav */
+            padding: 0.75rem 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            position: fixed;
             width: 100%;
             top: 0;
             left: 0;
-            z-index: 20; /* Ensure nav is above other content */
-            display: flex; /* Use flexbox for alignment */
-            justify-content: space-between; /* Space out items */
+            z-index: 20;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
         /* Hamburger Icon */
         .hamburger {
             font-size: 1.5rem;
-            color: white;
+            color: var(--white);
             cursor: pointer;
         }
 
         /* Mobile Navigation Overlay */
         .mobile-nav-overlay {
-            display: none; /* Hide by default */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7); /* Semi-transparent overlay */
+            background-color: rgba(0,0,0,0.7);
             z-index: 30;
         }
 
         .mobile-nav {
             position: fixed;
             top: 0;
-            left: -300px; /* Start off-screen */
+            left: -280px; /* Start off-screen, match width */
             width: 280px; /* Width of the mobile nav */
             height: 100%;
-            background-color: #f8f9fa; /* Light background */
+            background-color: var(--light-grey); /* Light background */
             z-index: 40;
-            transition: left 0.3s ease-in-out; /* Smooth transition */
-            overflow-y: auto; /* Enable scrolling for long menus */
-            padding-top: 4rem; /* Space for the close button */
+            transition: left 0.3s ease-in-out;
+            overflow-y: auto;
+            padding-top: 4rem;
         }
 
         .mobile-nav.open {
@@ -188,7 +208,7 @@
             top: 1rem;
             right: 1rem;
             font-size: 1.5rem;
-            color: #1a2e4a;
+            color: var(--primary-blue);
             cursor: pointer;
         }
 
@@ -200,7 +220,7 @@
 
         .mobile-nav ul li {
              margin: 0;
-             border-bottom: 1px solid #dee2e6; /* Separator */
+             border-bottom: 1px solid #dee2e6;
         }
 
          .mobile-nav ul li:last-child {
@@ -210,7 +230,7 @@
         .mobile-nav a {
             display: block;
             padding: 1rem 1.5rem;
-            color: #444;
+            color: var(--dark-grey);
             text-decoration: none;
             transition: background-color 0.2s ease-in-out;
         }
@@ -221,18 +241,18 @@
 
         /* Style for ordered lists within content */
         main ol {
-            list-style-type: decimal; /* Ensure decimal numbering */
-            margin-left: 2rem; /* Indent the list */
+            list-style-type: decimal;
+            margin-left: 2rem;
             margin-bottom: 1rem;
         }
          main ol li {
-            margin-bottom: 0.5rem; /* Space between list items */
+            margin-bottom: 0.5rem;
          }
 
-        /* Main content margin to avoid being hidden by fixed header */
-        main {
-            margin-top: 6rem; /* Adjust based on desktop header height */
-        }
+        /* Main content margin is no longer needed due to body padding */
+        /* main {
+            margin-top: 6rem;
+        } */
 
 
         /* Responsive adjustments */
@@ -243,8 +263,9 @@
             .desktop-nav {
                 display: block; /* Show desktop nav on desktop */
             }
-             main {
-                margin-top: 6rem; /* Adjust margin for fixed desktop header */
+             body {
+                padding-top: 1rem; /* Adjust padding for fixed left nav */
+                padding-left: 16rem; /* Add padding on the left for the fixed nav */
              }
              .content-area {
                 margin-top: 0; /* No extra space below fixed header on desktop */
@@ -258,8 +279,9 @@
              .mobile-top-nav {
                 display: flex; /* Show mobile top nav on mobile */
              }
-             main {
-                margin-top: 5rem; /* Adjust margin for fixed mobile header */
+             body {
+                padding-top: 5rem; /* Adjust padding for fixed mobile header */
+                padding-left: 1rem; /* Remove left padding on mobile */
              }
              .content-area {
                 margin-top: 0; /* No extra space below fixed header on mobile */
@@ -268,7 +290,7 @@
 
          /* Style for subsections within content (no extra numbering) */
         .content-subsection {
-            margin-bottom: 1rem; /* Space below subsection */
+            margin-bottom: 1rem;
         }
 
          .content-subsection p {
@@ -277,13 +299,12 @@
 
          /* Specific styling for the numbered list items within definitions */
          main article ol li {
-             margin-bottom: 0.75rem; /* Add some space between list items */
+             margin-bottom: 0.75rem;
          }
-
 
           /* Style for nested numbered lists (like 6.5.1, 6.5.2) */
          main article ol ol {
-             margin-left: 1rem; /* Further indent nested lists */
+             margin-left: 1rem;
              margin-top: 0.5rem;
          }
 
@@ -295,100 +316,95 @@
 </head>
 <body class="leading-relaxed">
 
-    <header class="text-center mb-8 pt-4">
-        <h1 class="text-4xl font-bold text-blue-800 mb-2">Kerala School of Mathematics</h1>
-        <p class="text-xl text-blue-600">Rules and Regulations (Bye-Laws)</p>
+    <header>
+        <h1 class="text-4xl font-bold mb-2">Kerala School of Mathematics</h1>
+        <p class="text-xl">Rules and Regulations (Bye-Laws)</p>
     </header>
 
     <nav class="desktop-nav hidden md:block">
-        <div class="desktop-nav-container">
-            <ul>
-                <li>
-                    <a href="#part-1">Preliminary</a>
-                    <ul>
-                        <li><a href="#section-1">1. Introduction</a></li>
-                        <li><a href="#section-2">2. Name and Address of the Institution</a></li>
-                        <li><a href="#section-3">3. Definitions</a></li>
-                        <li><a href="#section-4">4. Aims and Objectives of KSoM</a></li>
-                    </ul>
-                </li>
-                 <li>
-                    <a href="#part-2">Constitution</a>
-                    <ul>
-                        <li><a href="#section-5">5. Governing Body of KSoM</a></li>
-                        <li><a href="#section-6">6. Executive Council of KSoM</a></li>
-                        <li><a href="#section-7">7. Powers and Functions of the Executive Council</a></li>
-                        <li><a href="#section-8">8. Research Council of KSoM</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#part-3">Powers of the Executive Council & Other Officials</a>
-                    <ul>
-                        <li><a href="#section-9">9. Service Extension</a></li>
-                        <li><a href="#section-10">10. Appointing Authorities</a></li>
-                        <li><a href="#section-11">11. Approval of Promotions</a></li>
-                        <li><a href="#section-12">12. Disciplinary Authority</a></li>
-                        <li><a href="#section-13">13. Specific Powers of the Authorities</a></li>
-                        <li><a href="#section-14">14. Director</a></li>
-                        <li><a href="#section-15">15. Registrar</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#part-4">Staff, Its Categories and Its Appointments</a>
-                    <ul>
-                        <li><a href="#section-16">16. Classification</a></li>
-                        <li><a href="#section-17">17. Appointments & Promotions</a></li>
-                        <li><a href="#section-18">18. Appointment of the Director</a></li>
-                        <li><a href="#section-19">19. Officiating and Acting Director</a></li>
-                        <li><a href="#section-20">20. Appointment of Registrar</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#part-5">Finance & Accounts</a>
-                    <ul>
-                        <li><a href="#section-21">21. Budget & Funds of the Institute</a></li>
-                        <li><a href="#section-22">22. Audit</a></li>
-                        <li><a href="#section-23">23. Exercise of Financial Powers</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#part-6">Committees</a>
-                    <ul>
-                        <li><a href="#section-24">24. Committees</a></li>
-                        <li><a href="#section-25">25. Finance Committee</a></li>
-                        <li><a href="#section-26">26. Building and Works Committee (BWC)</a></li>
-                        <li><a href="#section-27">27. Academic Selection Committee</a></li>
-                    </ul>
-                </li>
-                 <li>
-                    <a href="#part-7">Service Conditions</a>
-                    <ul>
-                        <li><a href="#section-28">28. Service Conditions</a></li>
-                        <li><a href="#section-29">29. Disciplinary Rules</a></li>
-                        <li><a href="#section-30">30. Leave Rules</a></li>
-                        <li><a href="#section-31">31. Recruitment and Promotion of Staff</a></li>
-                        <li><a href="#section-32">32. Scheduled Caste Scheduled Tribes</a></li>
-                        <li><a href="#section-33">33. Contractual Services</a></li>
-                    </ul>
-                </li>
-                 <li>
-                    <a href="#part-8">Miscellaneous</a>
-                    <ul>
-                        <li><a href="#section-34">34. Miscellaneous</a></li>
-                        <li><a href="#section-35">35. Execution of Contracts on Behalf of the Institute</a></li>
-                        <li><a href="#section-36">36. Perpetual Succession</a></li>
-                        <li><a href="#section-37">37. Amendments of the Rules and Regulations</a></li>
-                        <li><a href="#section-38">38. Residuary Power</a></li>
-                        <li><a href="#section-39">39. Right to Information Act</a></li>
-                        <li><a href="#section-40">40. Implementation of Sexual Harassment Act</a></li>
-                        <li><a href="#section-41">41. Establishment of Grievances Redressal Mechanism</a></li>
-                         <li><a href="#section-42">42. Rules and Regulations</a></li>
-                         <li><a href="#section-43">43. Matters Not Covered Herein</a></li>
-                         <li><a href="#section-44">44. Saving Clause</a></li>
-                    </ul>
-                </li>
+        <ul>
+            <li>
+                <a href="#part-1">Preliminary</a>
+                <ul>
+                    <li><a href="#section-1">1. Introduction</a></li>
+                    <li><a href="#section-2">2. Name and Address of the Institution</a></li>
+                    <li><a href="#section-3">3. Definitions</a></li>
+                    <li><a href="#section-4">4. Aims and Objectives of KSoM</a></li>
+                </ul>
+            </li>
+             <li>
+                <a href="#part-2">Constitution</a>
+                <ul>
+                    <li><a href="#section-5">5. Governing Body of KSoM</a></li>
+                    <li><a href="#section-6">6. Executive Council of KSoM</a></li>
+                    <li><a href="#section-7">7. Powers and Functions of the Executive Council</a></li>
+                    <li><a href="#section-8">8. Research Council of KSoM</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#part-3">Powers & Officials</a>
+                <ul>
+                    <li><a href="#section-9">9. Service Extension</a></li>
+                    <li><a href="#section-10">10. Appointing Authorities</a></li>
+                    <li><a href="#section-11">11. Approval of Promotions</a></li>
+                    <li><a href="#section-12">12. Disciplinary Authority</a></li>
+                    <li><a href="#section-13">13. Specific Powers of the Authorities</a></li>
+                    <li><a href="#section-14">14. Director</a></li>
+                    <li><a href="#section-15">15. Registrar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#part-4">Staff & Appointments</a>
+                <ul>
+                    <li><a href="#section-16">16. Classification</a></li>
+                    <li><a href="#section-17">17. Appointments & Promotions</a></li>
+                    <li><a href="#section-18">18. Appointment of the Director</a></li>
+                    <li><a href="#section-19">19. Officiating and Acting Director</a></li>
+                    <li><a href="#section-20">20. Appointment of Registrar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#part-5">Finance & Accounts</a>
+                <ul>
+                    <li><a href="#section-21">21. Budget & Funds of the Institute</a></li>
+                    <li><a href="#section-22">22. Audit</a></li>
+                    <li><a href="#section-23">23. Exercise of Financial Powers</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#part-6">Committees</a>
+                <ul>
+                    <li><a href="#section-24">24. Finance Committee</a></li>
+                    <li><a href="#section-25">25. Building and Works Committee (BWC)</a></li>
+                    <li><a href="#section-26">26. Academic Selection Committee</a></li>
+                </ul>
+            </li>
+             <li>
+                <a href="#part-7">Service Conditions</a>
+                <ul>
+                    <li><a href="#section-27">27. Disciplinary Rules</a></li>
+                    <li><a href="#section-28">28. Leave Rules</a></li>
+                    <li><a href="#section-29">29. Recruitment and Promotion of Staff</a></li>
+                    <li><a href="#section-30">30. Scheduled Caste Scheduled Tribes</a></li>
+                    <li><a href="#section-31">31. Contractual Services</a></li>
+                </ul>
+            </li>
+             <li>
+                <a href="#part-8">Miscellaneous</a>
+                <ul>
+                    <li><a href="#section-32">32. Execution of Contracts on Behalf of the Institute</a></li>
+                    <li><a href="#section-33">33. Perpetual Succession</a></li>
+                    <li><a href="#section-34">34. Amendments of the Rules and Regulations</a></li>
+                    <li><a href="#section-35">35. Residuary Power</a></li>
+                    <li><a href="#section-36">36. Right to Information Act</a></li>
+                    <li><a href="#section-37">37. Implementation of Sexual Harassment Act</a></li>
+                    <li><a href="#section-38">38. Establishment of Grievances Redressal Mechanism</a></li>
+                    <li><a href="#section-39">39. Rules and Regulations</a></li>
+                    <li><a href="#section-40">40. Matters Not Covered Herein</a></li>
+                    <li><a href="#section-41">41. Saving Clause</a></li>
+                </ul>
+            </li>
             </ul>
-        </div>
     </nav>
 
     <nav class="mobile-top-nav md:hidden">
@@ -421,7 +437,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#part-3">Powers of the Executive Council & Other Officials</a>
+                <a href="#part-3">Powers & Officials</a>
                 <ul>
                     <li><a href="#section-9">9. Service Extension</a></li>
                     <li><a href="#section-10">10. Appointing Authorities</a></li>
@@ -433,7 +449,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#part-4">Staff, Its Categories and Its Appointments</a>
+                <a href="#part-4">Staff & Appointments</a>
                 <ul>
                     <li><a href="#section-16">16. Classification</a></li>
                     <li><a href="#section-17">17. Appointments & Promotions</a></li>
@@ -453,41 +469,37 @@
             <li>
                 <a href="#part-6">Committees</a>
                 <ul>
-                    <li><a href="#section-24">24. Committees</a></li>
-                    <li><a href="#section-25">25. Finance Committee</a></li>
-                    <li><a href="#section-26">26. Building and Works Committee (BWC)</a></li>
-                    <li><a href="#section-27">27. Academic Selection Committee</a></li>
+                    <li><a href="#section-24">24. Finance Committee</a></li>
+                    <li><a href="#section-25">25. Building and Works Committee (BWC)</a></li>
+                    <li><a href="#section-26">26. Academic Selection Committee</a></li>
                 </ul>
             </li>
              <li>
                 <a href="#part-7">Service Conditions</a>
                 <ul>
-                    <li><a href="#section-28">28. Service Conditions</a></li>
-                    <li><a href="#section-29">29. Disciplinary Rules</a></li>
-                    <li><a href="#section-30">30. Leave Rules</a></li>
-                    <li><a href="#section-31">31. Recruitment and Promotion of Staff</a></li>
-                    <li><a href="#section-32">32. Scheduled Caste Scheduled Tribes</a></li>
-                    <li><a href="#section-33">33. Contractual Services</a></li>
+                    <li><a href="#section-27">27. Disciplinary Rules</a></li>
+                    <li><a href="#section-28">28. Leave Rules</a></li>
+                    <li><a href="#section-29">29. Recruitment and Promotion of Staff</a></li>
+                    <li><a href="#section-30">30. Scheduled Caste Scheduled Tribes</a></li>
+                    <li><a href="#section-31">31. Contractual Services</a></li>
                 </ul>
             </li>
              <li>
                 <a href="#part-8">Miscellaneous</a>
                 <ul>
-                    <li><a href="#section-34">34. Miscellaneous</a></li>
-                    <li><a href="#section-35">35. Execution of Contracts on Behalf of the Institute</a></li>
-                    <li><a href="#section-36">36. Perpetual Succession</a></li>
-                    <li><a href="#section-37">37. Amendments of the Rules and Regulations</a></li>
-                    <li><a href="#section-38">38. Residuary Power</a></li>
-                    <li><a href="#section-39">39. Right to Information Act</a></li>
-                    <li><a href="#section-40">40. Implementation of Sexual Harassment Act</a></li>
-                    <li><a href="#section-41">41. Establishment of Grievances Redressal Mechanism</a></li>
-                     <li><a href="#section-42">42. Rules and Regulations</a></li>
-                     <li><a href="#section-43">43. Matters Not Covered Herein</a></li>
-                     <li><a href="#section-44">44. Saving Clause</a></li>
+                    <li><a href="#section-32">32. Execution of Contracts on Behalf of the Institute</a></li>
+                    <li><a href="#section-33">33. Perpetual Succession</a></li>
+                    <li><a href="#section-34">34. Amendments of the Rules and Regulations</a></li>
+                    <li><a href="#section-35">35. Residuary Power</a></li>
+                    <li><a href="#section-36">36. Right to Information Act</a></li>
+                    <li><a href="#section-37">37. Implementation of Sexual Harassment Act</a></li>
+                    <li><a href="#section-38">38. Establishment of Grievances Redressal Mechanism</a></li>
+                    <li><a href="#section-39">39. Rules and Regulations</a></li>
+                    <li><a href="#section-40">40. Matters Not Covered Herein</a></li>
+                    <li><a href="#section-41">41. Saving Clause</a></li>
                 </ul>
             </li>
             </ul>
-        </div>
     </nav>
 
 
@@ -570,7 +582,7 @@
                         <li>To encourage and execute research and original investigations in fundamental sciences generally, with particular emphasis on Mathematical Sciences.</li>
                         <li>To cultivate a rigorous mathematical discipline, stimulate enthusiasm for creative work, and foster a spirit of intellectual collaboration among academic professionals engaged in pure and applied branches of science.</li>
                         <li>To organize lectures, meetings, seminars, and symposia in furtherance of its academic pursuits and for the dissemination of scientific knowledge.</li>
-                        <li>To invite scientists, both domestic and international, engaged in creative work, to deliver presentations and participate in the academic activities of the institution.</li>
+                         <li>To invite scientists, both domestic and international, engaged in creative work, to deliver presentations and participate in the academic activities of the institution.</li>
                          <li>To undertake any other measures deemed necessary and beneficial for the advancement of learning in Mathematical Sciences and for the diffusion of knowledge in these sciences.</li>
                     </ol>
                 </article>
@@ -634,7 +646,6 @@
 
                      <div id="section-5-8" class="mb-4 content-subsection">
                         <h4 class="subsection-title">5.8. Powers and Functions:</h4>
-                        <p class="ml-4">The Governing Body of the Institute shall possess and exercise the following powers and functions:</p>
                         <ol class="ml-8">
                             <li>To approve the annual budget, annual plan, and vision statement of the Institute.</li>
                             <li>To conduct annual reviews of the operational performance and functioning of the Institute.</li>
@@ -1063,7 +1074,7 @@
             </section>
 
             <section id="part-4" class="mb-8">
-                <h2 class="text-3xl font-bold part-title">Staff, Its Categories and Its Appointments</h2>
+                <h2 class="text-3xl font-bold part-title">Staff, Categories and Appointments</h2>
 
                 <article id="section-16" class="mb-6">
                     <h3 class="text-2xl font-semibold section-title">16. Classification</h3>
@@ -1137,7 +1148,7 @@
                     <h3 class="text-2xl font-semibold section-title">19. Officiating and Acting Director</h3>
                     <div id="section-19-1" class="mb-4 content-subsection">
                         <h4 class="subsection-title">19.1. Appointment of Officiating Director:</h4>
-                        <p class="ml-4">Notwithstanding anything contained in clause 18 of these Rules and Regulations, in the event of the absence of the duly appointed Director for a continuous period exceeding thirty (30) days, the Chairperson of the Executive Council may appoint a person to officiate as Director. Any such appointment shall be reported to the Executive Council at its next ensuing meeting for information. The person so appointed to officiate shall be responsible for the day-to-day administration of the Institute and shall not exercise the statutory powers vested in the regular Director appointed under clause 18.</p>
+                        <p class="ml-4">Notwithstanding anything contained in clause 16 of these Rules and Regulations, in the event of the absence of the duly appointed Director for a continuous period exceeding thirty (30) days, the Chairperson of the Executive Council may appoint a person to officiate as Director. Any such appointment shall be reported to the Executive Council at its next ensuing meeting for information. The person so appointed to officiate shall be responsible for the day-to-day administration of the Institute and shall not exercise the statutory powers vested in the regular Director appointed under clause 16.</p>
                     </div>
                     <div id="section-19-2" class="mb-4 content-subsection">
                         <h4 class="subsection-title">19.2. Temporary Appointment of Acting Director:</h4>
@@ -1237,14 +1248,9 @@
                 <h2 class="text-3xl font-bold part-title">Committees</h2>
 
                 <article id="section-24" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">24. Committees</h3>
-                    <p class="ml-4">Placeholder content for Committees section.</p>
-                </article>
-
-                <article id="section-25" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">25. Finance Committee</h3>
-                    <div id="section-25-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">25.1. Constitution of the Finance Committee:</h4>
+                    <h3 class="text-2xl font-semibold section-title">24. Finance Committee</h3>
+                    <div id="section-24-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">24.1. Constitution of the Finance Committee:</h4>
                         <p class="ml-4">There shall be constituted a Finance Committee of the Institute comprising the following members:</p>
                         <ol class="ml-8">
                             <li>The Chairperson of the Executive Council, who shall serve as the ex-officio Chairperson of the Finance Committee.</li>
@@ -1253,8 +1259,8 @@
                             <li>One additional member nominated by the Executive Council.</li>
                         </ol>
                     </div>
-                    <div id="section-25-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">25.2. Functions of the Finance Committee:</h4>
+                    <div id="section-24-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">24.2. Functions of the Finance Committee:</h4>
                         <p class="ml-4">The functions of the Finance Committee shall be as follows:</p>
                         <ol class="ml-8">
                             <li>To examine and scrutinise the annual budget estimates of the Institute and submit its recommendations thereon to the Executive Council.</li>
@@ -1264,36 +1270,36 @@
                             <li>To exercise such financial powers of the Executive Council as may be delegated to it concerning the finalisation of consultancy contracts, works contracts, and procurement contracts.</li>
                         </ol>
                     </div>
-                    <div id="section-25-3" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">25.3. Meetings:</h4>
+                    <div id="section-24-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">24.3. Meetings:</h4>
                         <p class="ml-4">The Finance Committee shall convene meetings as frequently as deemed necessary or as desired by the Executive Council or the Chairperson of the Finance Committee for the purpose of addressing any specific task.</p>
                     </div>
-                    <div id="section-25-4" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">25.4. Submission of Minutes:</h4>
+                    <div id="section-24-4" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">24.4. Submission of Minutes:</h4>
                         <p class="ml-4">The Committee shall submit the minutes of its meetings to the Executive Council for consideration and ratification.</p>
                     </div>
                 </article>
 
-                <article id="section-26" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">26. Building and Works Committee (BWC)</h3>
-                    <div id="section-26-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">26.1. Constitution of the Building and Works Committee:</h4>
+                <article id="section-25" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">25. Building and Works Committee (BWC)</h3>
+                    <div id="section-25-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">25.1. Constitution of the Building and Works Committee:</h4>
                         <p class="ml-4">There shall be constituted a Building and Works Committee (BWC) of the Institute by the Executive Council. The Committee shall comprise not less than five (5) and not more than seven (7) members, who shall be nominated or constituted by the Executive Council, and shall function under the chairpersonship of the Director of the Institute.</p>
                     </div>
-                    <div id="section-26-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">26.2. Composition:</h4>
+                    <div id="section-25-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">25.2. Composition:</h4>
                         <p class="ml-4">The composition of the Building and Works Committee shall include representatives from the Administration and Finance departments of the Government.</p>
                     </div>
-                    <div id="section-26-3" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">26.3. Functioning and Oversight of Works:</h4>
+                    <div id="section-25-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">25.3. Functioning and Oversight of Works:</h4>
                         <p class="ml-4">The Committee shall function under the direction of the Executive Council. The Committee shall oversee the planning, execution, and completion of all building and works projects of the Institute. In discharging its functions, the Committee shall ensure strict adherence to the procedures stipulated for Public Works by the Central Public Works Department (CPWD) and the prevailing Government Orders issued by the Government of Kerala governing the execution of public works through accredited agencies in the State.</p>
                     </div>
                 </article>
 
-                <article id="section-27" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">27. Academic Selection Committee</h3>
-                    <div id="section-27-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">27.1. Constitution and Functions:</h4>
+                <article id="section-26" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">26. Academic Selection Committee</h3>
+                    <div id="section-26-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">26.1. Constitution and Functions:</h4>
                         <p class="ml-4">The Academic Selection Committee, responsible for matters pertaining to the recruitment and promotion of academic staff, shall be constituted and shall function in strict conformity with the recruitment and promotion rules of the Institute, as duly approved by the Executive Council from time to time.</p>
                     </div>
                 </article>
@@ -1303,80 +1309,75 @@
             <section id="part-7" class="mb-8">
                 <h2 class="text-3xl font-bold part-title">Service Conditions</h2>
 
-                <article id="section-28" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">28. Service Conditions</h3>
-                    <p class="ml-4">Placeholder content for Service Conditions section.</p>
-                </article>
-
-                <article id="section-29" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">29. Disciplinary Rules</h3>
-                    <div id="section-29-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">29.1. Authority for Disciplinary Action:</h4>
+                <article id="section-27" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">27. Disciplinary Rules</h3>
+                    <div id="section-27-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">27.1. Authority for Disciplinary Action:</h4>
                         <p class="ml-4">The authority vested with the power to appoint a member of the staff shall also be competent to suspend, discharge, dismiss, or otherwise impose penalties upon such staff member for reasons of misconduct or breach of the terms and conditions governing their appointment.</p>
                     </div>
-                    <div id="section-29-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">29.2. Governing Conduct and Disciplinary Rules:</h4>
+                    <div id="section-27-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">27.2. Governing Conduct and Disciplinary Rules:</h4>
                         <p class="ml-4">In matters pertaining to conduct and disciplinary proceedings, the employees of the Institute shall be governed by the Institute's own Conduct and Disciplinary Rules, as duly adopted by the Executive Council. These rules and Regulations shall be aligned with the principles and provisions of the Central Civil Services (Conduct) Rules, 1964, and the Central Civil Services (Classification, Control and Appeal) Rules, 1965.</p>
                     </div>
-                    <div id="section-29-3" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">29.3. Application of Service Rules:</h4>
+                    <div id="section-27-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">27.3. Application of Service Rules:</h4>
                         <p class="ml-4">The Institute shall apply and adhere to the Service Rules, as approved by the Executive Council and currently in force, including but not limited to the Fundamental Rules, Supplementary Rules, Travelling Allowance Rules, Leave Rules, Leave Travel Concession Rules, and Pension Rules, in matters concerning the service conditions of its employees.</p>
                     </div>
                 </article>
 
-                <article id="section-30" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">30. Leave Rules</h3>
-                    <div id="section-30-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">30.1. Grant of Leave:</h4>
+                <article id="section-28" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">28. Leave Rules</h3>
+                    <div id="section-28-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">28.1. Grant of Leave:</h4>
                         <p class="ml-4">Employees of the Institute shall be eligible for and granted various forms of leave, including but not limited to casual leave, earned leave, and leave on medical grounds, in accordance with the leave rules of the Institute as formally adopted. For members of the Academic Staff, the said rules shall be aligned with the principles and provisions of the Leave Rules applicable to employees of the Central Government. For members of the Administrative Staff, the said rules shall be aligned with the principles and provisions of the Leave Rules applicable to employees of the Government of Kerala.</p>
                     </div>
-                    <div id="section-30-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">30.2. Specific Leave Categories:</h4>
+                    <div id="section-28-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">28.2. Specific Leave Categories:</h4>
                         <p class="ml-4">Rules governing specific categories of leave, such as study leave, sabbatical leave, and extraordinary leave, shall be as approved by the Executive Council.</p>
                     </div>
-                    <div id="section-30-3" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">30.3. Leave Not a Matter of Right:</h4>
+                    <div id="section-28-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">28.3. Leave Not a Matter of Right:</h4>
                         <p class="ml-4">Leave of any description cannot be claimed by an employee as a matter of right.</p>
                     </div>
-                    <div id="section-30-4" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">30.4. Discretion of Leave Sanctioning Authority:</h4>
+                    <div id="section-28-4" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">28.4. Discretion of Leave Sanctioning Authority:</h4>
                         <p class="ml-4">Where the exigencies of the Institute's work so require, the authority empowered to grant leave reserves the absolute discretion to refuse or revoke leave of any description.</p>
                     </div>
                 </article>
 
-                <article id="section-31" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">31. Recruitment and Promotion of Staff</h3>
-                    <div id="section-31-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">31.1. Regulation of Recruitment and Promotion:</h4>
+                <article id="section-29" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">29. Recruitment and Promotion of Staff</h3>
+                    <div id="section-29-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">29.1. Regulation of Recruitment and Promotion:</h4>
                         <p class="ml-4">The recruitment and promotion, including assessment and merit promotion, in respect of all categories of staff of the Institute shall be regulated strictly in accordance with the recruitment and promotion rules as formulated and adopted by the Executive Council.</p>
                     </div>
-                    <div id="section-31-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">31.2. Annual Performance Appraisal Reports:</h4>
+                    <div id="section-29-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">29.2. Annual Performance Appraisal Reports:</h4>
                         <p class="ml-4">The Institute shall utilise Annual Performance Appraisal Reports (APARs) for all its employees as a component of the evaluation and review process.</p>
                     </div>
-                    <div id="section-31-3" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">31.3. Review of Employees:</h4>
+                    <div id="section-29-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">29.3. Review of Employees:</h4>
                         <p class="ml-4">A system for the periodic review of the employees of the Institute shall be established and maintained, in strict conformity with the provisions stipulated in Fundamental Rule 56(j).</p>
                     </div>
                 </article>
 
-                <article id="section-32" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">32. Scheduled Caste Scheduled Tribes</h3>
-                    <div id="section-32-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">32.1. Applicability of Reservation Rules:</h4>
+                <article id="section-30" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">30. Scheduled Caste Scheduled Tribes</h3>
+                    <div id="section-30-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">30.1. Applicability of Reservation Rules:</h4>
                         <p class="ml-4">The rules and orders issued by the Government of India from time to time regarding the reservation of posts for Scheduled Castes (SC), Scheduled Tribes (ST), Other Backward Classes (OBCs), and Persons with Disabilities shall be applicable to the extent permissible and relevant in respect of appointments to posts to be made in the Institute. In the event of any conflict between the rules and orders issued by the Government of India and those issued by the Government of Kerala concerning reservation, the provisions of Section 39 of these Rules and Regulations shall apply.</p>
                     </div>
                 </article>
 
-                <article id="section-33" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">33. Contractual Services</h3>
-                    <div id="section-33-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">33.1. Engagement of Contractual Services:</h4>
+                <article id="section-31" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">31. Contractual Services</h3>
+                    <div id="section-31-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">31.1. Engagement of Contractual Services:</h4>
                         <p class="ml-4">The Director is hereby empowered to engage external agencies or contractors for the provision of services related to infrastructural support, maintenance, and other ancillary services required by the Institute, to the extent deemed feasible and necessary for the efficient functioning thereof.</p>
                     </div>
-                    <div id="section-33-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">33.2. Status of Contractor's Personnel:</h4>
-                        <p class="ml-4">Any individual engaged by an external agency or contractor for the provision of services to the Institute pursuant to a contract executed under the provisions of clause 33.1 shall not, under any circumstances whatsoever, be construed as or deemed to be an employee of the Institute.</p>
+                    <div id="section-31-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">31.2. Status of Contractor's Personnel:</h4>
+                        <p class="ml-4">Any individual engaged by an external agency or contractor for the provision of services to the Institute pursuant to a contract executed under the provisions of clause 30.1 shall not, under any circumstances whatsoever, be construed as or deemed to be an employee of the Institute.</p>
                     </div>
                 </article>
 
@@ -1385,116 +1386,131 @@
             <section id="part-8" class="mb-8">
                 <h2 class="text-3xl font-bold part-title">Miscellaneous</h2>
 
-                <article id="section-34" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">34. Miscellaneous</h3>
-                    <p class="ml-4">Placeholder content for Miscellaneous section.</p>
-                </article>
-
-                <article id="section-35" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">35. Execution of Contracts on Behalf of the Institute</h3>
-                    <div id="section-35-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">35.1. Authority for Execution of Agreements and Contracts:</h4>
+                <article id="section-32" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">32. Execution of Contracts on Behalf of the Institute</h3>
+                    <div id="section-32-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">32.1. Authority for Execution of Agreements and Contracts:</h4>
                         <p class="ml-4">All agreements, contracts, and other instruments, save and except any agreement or contract entered into between the Institute and the Director, which may be requisite or necessary for the proper conduct of the business and affairs of the Institute, shall be executed on behalf of the Executive Council by the Director or by an officer of the Institute duly authorised by the Executive Council for the said purpose.</p>
                     </div>
                 </article>
 
-                <article id="section-36" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">36. Perpetual Succession</h3>
-                    <div id="section-36-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">36.1. Status and Legal Capacity:</h4>
+                <article id="section-33" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">33. Perpetual Succession</h3>
+                    <div id="section-33-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">33.1. Status and Legal Capacity:</h4>
                         <p class="ml-4">The Institute shall possess perpetual succession and a common seal, and shall be capable of suing and being sued in its own name through its Registrar.</p>
                     </div>
                 </article>
 
-                <article id="section-37" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">37. Amendments of the Rules and Regulations</h3>
-                    <div id="section-37-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">37.1. Procedure for Amendment:</h4>
+                <article id="section-34" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">34. Amendments of the Rules and Regulations</h3>
+                    <div id="section-34-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">34.1. Procedure for Amendment:</h4>
                         <p class="ml-4">These Rules and Regulations may be amended. Any such amendment shall be effected only with the concurrence of the Department and after strict adherence to the due procedure enumerated in the respective statute by which the Institute is registered.</p>
                     </div>
                 </article>
 
-                <article id="section-38" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">38. Residuary Power</h3>
-                    <div id="section-38-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">38.1. Exercise of Residuary Powers:</h4>
+                <article id="section-35" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">35. Residuary Power</h3>
+                    <div id="section-35-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">35.1. Exercise of Residuary Powers:</h4>
                         <p class="ml-4">Any powers not expressly vested or provided for in these Rules and Regulations may be exercised by the Executive Council in consultation with the Government.</p>
                     </div>
-                    <div id="section-38-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">38.2. Interpretation of Rules:</h4>
+                    <div id="section-35-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">35.2. Interpretation of Rules:</h4>
                         <p class="ml-4">In the matter of interpretation of these Rules and Regulations or any provisions of the rules of governance of the Institute, the decision rendered by the Executive Council shall be final and binding.</p>
                     </div>
-                    <div id="section-38-3" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">38.3. Power to Relax Provisions:</h4>
+                    <div id="section-35-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">35.3. Power to Relax Provisions:</h4>
                         <p class="ml-4">The Executive Council is hereby vested with the competence to relax any or all of the provisions of these Rules and Regulations in the larger public interest.</p>
                     </div>
                 </article>
 
-                <article id="section-39" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">39. Right to Information Act</h3>
-                    <div id="section-39-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">39.1. Implementation of the Act:</h4>
+                <article id="section-36" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">36. Right to Information Act</h3>
+                    <div id="section-36-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">36.1. Implementation of the Act:</h4>
                         <p class="ml-4">The Institute shall undertake all necessary measures for the effective implementation of the provisions of the Right to Information Act, 2005.</p>
                     </div>
-                    <div id="section-39-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">39.2. Appointment of Officers:</h4>
+                    <div id="section-36-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">36.2. Appointment of Officers:</h4>
                         <p class="ml-4">In furtherance of the implementation of the said Act, the Institute shall appoint appropriate Public Information Officers, Appellate Authorities, and Transparency Officers as required by the provisions of the Act.</p>
                     </div>
-                    <div id="section-39-3" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">39.3. Proactive Disclosures:</h4>
+                    <div id="section-36-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">36.3. Proactive Disclosures:</h4>
                         <p class="ml-4">The Institute shall diligently monitor compliance with the requirements of Section 4 of the Right to Information Act, 2005, and shall ensure that proactive disclosures are properly updated and revised periodically on the Institute's official platforms.</p>
                     </div>
                 </article>
 
-                <article id="section-40" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">40. Implementation of Sexual Harassment Act</h3>
-                    <div id="section-40-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">40.1. Compliance with the Act:</h4>
+                <article id="section-37" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">37. Implementation of Sexual Harassment Act</h3>
+                    <div id="section-37-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">37.1. Compliance with the Act:</h4>
                         <p class="ml-4">The Institute shall take all necessary measures to ensure the effective implementation of the provisions of The Sexual Harassment of Woman at Workplace (Prevention, Prohibition and Redressal) Act, 2013, hereinafter referred to as "the Act," in its true spirit and form.</p>
                     </div>
-                    <div id="section-40-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">40.2. Establishment of Internal Committee:</h4>
+                    <div id="section-37-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">37.2. Establishment of Internal Committee:</h4>
                         <p class="ml-4">In furtherance of the implementation of the Act, the Institute shall constitute an Internal Committee in accordance with the requirements stipulated in the Act, for the prevention and redressal of complaints of sexual harassment.</p>
                     </div>
-                    <div id="section-40-3" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">40.3. Adherence to Procedures:</h4>
+                    <div id="section-37-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">37.3. Adherence to Procedures:</h4>
                         <p class="ml-4">The Institute shall ensure strict adherence to the procedures and guidelines prescribed under the Act for the prevention of sexual harassment and for the inquiry and redressal of complaints received thereunder.</p>
                     </div>
                 </article>
 
-                <article id="section-41" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">41. Establishment of Grievances Redressal Mechanism</h3>
-                    <div id="section-41-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">41.1. Requirement for Grievance Redressal Mechanism:</h4>
+                <article id="section-38" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">38. Establishment of Grievances Redressal Mechanism</h3>
+                    <div id="section-38-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">38.1. Requirement for Grievance Redressal Mechanism:</h4>
                         <p class="ml-4">There shall be established and maintained a proper mechanism within the Institute for the redressal of grievances of the employees of the Institute.</p>
                     </div>
-                    <div id="section-41-2" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">41.2. Appointment of Grievance Redressal Committee:</h4>
-                        <p class="ml-4">The Institute shall appoint a Grievance Redressal Committee for the purpose of addressing and redressing grievances.</p>
+                    <div id="section-38-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">38.2. Appointment of Grievance Redressal Committee:</h4>
+                        <p class="ml-4">The Institute shall appoint a Grievance Redressal Committee for the purpose of addressing and resolving grievance petitions in a time-bound manner.</p>
+                    </div>
+                     <div id="section-38-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">38.3. Functions of the Committee:</h4>
+                        <p class="ml-4">The Grievance Redressal Committee shall be responsible for receiving, examining, and disposing of grievance petitions submitted by employees in accordance with the procedures and timelines as may be prescribed by the Executive Council.</p>
                     </div>
                 </article>
 
-                 <article id="section-42" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">42. Rules and Regulations</h3>
-                    <div id="section-42-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">42.1. Construction and Application:</h4>
-                         <p class="ml-4">These Rules and Regulations shall be read, interpreted, and construed in conjunction with the Service Rules of the Kerala School of Mathematics, as may be in force and applicable from time to time.</p>
+                 <article id="section-39" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">39. Rules and Regulations</h3>
+                    <div id="section-39-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">39.1. Adherence to These Rules and Regulations:</h4>
+                         <p class="ml-4">The Institute shall strictly adhere to the provisions set forth in these Rules and Regulations.</p>
+                    </div>
+                     <div id="section-39-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">39.2. Framing of Additional Service Rules:</h4>
+                         <p class="ml-4">In addition to these Rules and Regulations, the Institute may frame additional service rules governing its activities. Such additional service rules shall, in all respects, be consistent with and not in contradiction to the provisions of these Rules and Regulations or any directives issued by the Government or the S&T Department.</p>
+                    </div>
+                     <div id="section-39-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">39.3. Precedence:</h4>
+                         <p class="ml-4">In the event of any inconsistency or conflict between any additional service rules framed by the Institute and these Rules and Regulations, the provisions of these Rules and Regulations shall prevail.</p>
                     </div>
                 </article>
 
-                 <article id="section-43" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">43. Matters Not Covered Herein</h3>
-                    <div id="section-43-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">43.1. Applicability of Government Rules:</h4>
-                         <p class="ml-4">In respect of any matter not specifically provided for in these Rules and Regulations, the rules and orders issued by the Government of Kerala from time to time concerning similar matters in the State Government service shall apply mutatis mutandis.</p>
+                 <article id="section-40" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">40. Matters Not Covered Herein</h3>
+                    <div id="section-40-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">40.1. Removal of Doubts and Interpretation:</h4>
+                         <p class="ml-4">Where any doubt arises as to the interpretation of any of the provisions contained within these Rules and Regulations, the matter shall be formally referred to the Executive Council for a definitive decision. </p>
+                    </div>
+                    <div id="section-40-2" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">40.2. Matters not Covered:</h4>
+                         <p class="ml-4">If any question or matter arises which is not expressly covered by the provisions of these Rules and Regulations, the decision rendered by the Executive Council in respect thereof shall be final.</p>
+                    </div>
+                    <div id="section-40-3" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">40.3. Recourse to Government Rules:</h4>
+                         <p class="ml-4">In regard to the regulation of any matter not covered hereinabove, recourse shall be taken to the relevant rules, orders, or directives issued by the Central Government on the subject for Academic Staff, and to the relevant rules, orders, or directives issued by the Government of Kerala on the subject for Administrative Staff.</p>
                     </div>
                 </article>
 
-                 <article id="section-44" class="mb-6">
-                    <h3 class="text-2xl font-semibold section-title">44. Saving Clause</h3>
-                    <div id="section-44-1" class="mb-4 content-subsection">
-                        <h4 class="subsection-title">44.1. Power to Remove Difficulty:</h4>
-                         <p class="ml-4">Notwithstanding anything contained in these Rules and Regulations, the Executive Council shall have the power to issue such directions or orders as may be necessary for the purpose of removing any difficulty which may arise in giving effect to the provisions of these Rules and Regulations.</p>
+                 <article id="section-41" class="mb-6">
+                    <h3 class="text-2xl font-semibold section-title">41. Saving Clause</h3>
+                    <div id="section-41-1" class="mb-4 content-subsection">
+                        <h4 class="subsection-title">41.1. Binding Nature of Government Directives:</h4>
+                         <p class="ml-4">Notwithstanding anything contained in these Rules and Regulations, any directives issued by the Government shall be binding upon the Institute and shall have an overriding effect on any provision of these Rules and Regulations, the statutes governing the Institute, or any other rules of the Institute.</p>
                     </div>
                 </article>
 
@@ -1505,7 +1521,7 @@
     </div>
 
     <footer class="text-center mt-8 p-4 text-gray-600">
-        <p>&copy; 2023 Kerala School of Mathematics. All rights reserved.</p>
+        <p>&copy; 2025 Kerala School of Mathematics. All rights reserved.</p>
     </footer>
 
     <script>
