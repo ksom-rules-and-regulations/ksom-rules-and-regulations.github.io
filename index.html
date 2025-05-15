@@ -291,7 +291,7 @@
              }
              /* Adjusted margin-top for main content to clear fixed header and nav */
              main {
-                margin-top: 9rem; /* Sufficient space for fixed header and nav */
+                margin-top: 11rem; /* Increased margin for fixed header and nav */
              }
         }
 
@@ -703,7 +703,7 @@
                         <li>The Chief Minister, Government of Kerala, who shall serve as the Chairperson.</li>
                         <li>The Secretary to the Government of Kerala, Science & Technology Department, who shall serve as an Ex-officio Member.</li>
                         <li>The Secretary to the Government of Kerala, Higher Education Department, who shall serve as an Ex-officio Member</li>
-                        <li>The Secretary to the Government of Kerala, Department of Finance, who shall serve as an Ex-officio Member.</li>
+                        <li>The Secretary to the Government of Kerala, Department of Finance, who shall serve as a Member.</li>
                         <li>The Chairperson of the National Board for Higher Mathematics (NBHM), who shall serve as an Ex-officio Member.</li>
                         <li>The Vice Chancellor of the Homi Bhabha National Institute, who shall serve as an Ex-officio Member.</li>
                         <li>The Director of the Institute of Mathematical Sciences (IMSc), Chennai, who shall serve as an Ex-officio Member.</li>
@@ -1702,7 +1702,7 @@
         window.addEventListener('scroll', () => {
             let current = '';
             // Get the current scroll position and adjust for fixed header/nav height
-            const scrollPos = window.scrollY + (window.innerWidth >= 768 ? 9 * 16 : 5 * 16); // Approx rem to px conversion
+            const scrollPos = window.scrollY + (window.innerWidth >= 768 ? 11 * 16 : 5 * 16); // Adjusted rem to px conversion
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
